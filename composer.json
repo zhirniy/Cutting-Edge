@@ -1,0 +1,7 @@
+{
+    "autoload": {
+        "classmap": ["app"],
+        "files": ["app/configs/config.inc.php"]
+    }
+
+}

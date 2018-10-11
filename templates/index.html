@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tamplates</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/gif" href="images/favicon.gif" /> -->
+    <link rel="stylesheet" href="css/libs/normalize.min.css" />
+    <link rel="stylesheet" href="css/libs/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="ce-filter" >
+        <div class="ce-filter__wrapper">
+            <div class="ce-filter__top-buttons">
+                <div class="ce-filter__top-button ce-active">
+                    <svg class="ce-icon">
+                        <use xlink:href="images/svg/symbols.svg#svg-settings"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="ce-filter__body ce-active">
+                <div class="ce-filter__top">
+                    <div class="ce-filter__title">
+                        Подбор дисков по параметрам
+                    </div>
+                </div>
+                <form id="ajax_form" class="ce-filter__items" method="post"  >
+                    <div class="ce-filter__row">
+                        <div class="ce-filter__box">
+                            <div class="ce-filter__input">
+                                <label>Диаметр</label>
+                                <select class="ce-select" name="diameter">
+                                    <option value="13" selected>13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                            </div>
+                            <div class="ce-filter__input">
+                                <label>Ширина</label>
+                                <select class="ce-select" name="width">
+                                    <option value="135" selected >135</option>
+                                    <option value="145">145</option>
+                                    <option value="155">155</option>
+                                    <option value="165">165</option>
+                                    <option value="175">175</option>
+                                    <option value="185">185</option>
+                                </select>
+                            </div>
+                            <div class="ce-filter__input">
+                                <label>PCD</label>
+                                <select class="ce-select" name="pcd">
+                                    <option value="15" selected>15</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button  id="btn" class="ce-button ce-filter__submit ce-filter__submit--pc">подобрать</button>
+
+                    </div>
+                    <div class="ce-filter__block">
+                        <div class="ce-filter__row">
+                            <div class="ce-filter__box">
+                                <div class="ce-filter__input ce-filter__input--brands">
+                                    <label>Бренд</label>
+                                    <select class="ce-select" name="brand">
+                                        <option value="" selected>Выбирите</option>
+                                        <option value="fulda">Fulda</option>
+                                        <option value="barum">Barum</option>
+                                        <option value="lassa">Lassa</option>
+                                    </select>
+                                   
+                                </div>
+                                <div class="ce-filter__input">
+                                    <label>Вылет ET</label>
+                                    <select class="ce-select" name="et">
+                                        <option value="10" selected>10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ce-filter__row">
+                            <div class="ce-filter__box ce-filter__box--large">
+                                <div class="ce-filter__input">
+                                    <label>Тип</label>
+                                    <select class="ce-select" name="type">
+                                        <option value="13" selected>13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                    </select>
+                                </div>
+                                <div class="ce-filter__input">
+                                    <label>Логотип</label>
+                                    <select class="ce-select" name="logo">
+                                        <option value="10" selected>10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                    </select>
+                                </div>
+                                <div class="ce-filter__slider">
+                                    <label>Цена</label>
+                                    <div class="ce-filter__slider-row">
+                                        <div class="ce-filter__slider-price">
+                                            от
+                                            <span class="js-ce-slider-range-lowprice"> <input type="text" id="from" name="from" readonly value="25"  style="display: inherit; background-color: inherit; border: none; color: inherit; width:50px"></span>
+                                        </div>
+                                        <div class="ce-filter__slider-price">
+                                            до
+                                            <span class="js-ce-slider-range-highprice"><input type="text" id="to" name="to" readonly value="253" style="display: inherit;background-color: inherit; border:none; color:inherit; width:50px"></span>
+                                        </div>
+                                    </div>
+                                    <div class="ce-slider-range" data-min="0" data-max="500" data-values="25, 253"></div>
+                                                                      
+                                </div>
+
+                                <div class="ce-filter__img">
+                                    <img src="images/filter/wheels.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ce-filter__toggle">Скрыть</div>
+
+                    <button  id="btn" class="ce-button ce-filter__submit ce-filter__submit--mobile">подобрать</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    <div class="ce-products">
+        <div class="ce-products__wrapper ce-container">
+           {products}
+        </div>
+    </div>
+    <div id="result"></div>
+  
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/svg4everybody.min.js"></script>
+    <script src="js/libs/jquery-ui.min.js"></script>
+    <script src="js/libs/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+</html>
