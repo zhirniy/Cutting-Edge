@@ -22,6 +22,7 @@ $result = $mysqli->query($sql_query);
 while ($product = $result->fetch_object()){
 		var_dump($product);
 };*/
+var_dump($_POST);
 $result = new Model;
 $result = $result->read($mysqli, $_POST);
 //var_dump($result);
