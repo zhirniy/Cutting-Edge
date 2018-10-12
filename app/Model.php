@@ -1,6 +1,5 @@
 <?php
-class Model{
-	public $connect;
+class Model extends DB{
 	public $diameter;
 	public $weight;
 	public $pcd;
@@ -11,8 +10,12 @@ class Model{
 	public $from;
 	public $to;
 
-	public function read($connect, $params){
-		$this->connect = $connect;
+	public function __construct() 
+	{
+		parent::__construct();
+	}
+	/*Метод фильтрует записи по POST запросу*/
+	public function read($params){
 		$this->diameter = $params['diameter'];
 		$this->width = $params['width'];
 		$this->pcd = $params['pcd'];
@@ -22,7 +25,6 @@ class Model{
 		$this->logo = $params['logo'];
 		$this->from = $params['from'];
 		$this->to = $params['to'];
-		//var_dump($this->brand);
 
 		$sql_query = "SELECT * FROM properties LEFT JOIN products_properties ON properties.id=products_properties.properti_id
         LEFT JOIN products ON products_properties.product_id=products.id
@@ -38,26 +40,32 @@ class Model{
 			products.discount_price BETWEEN $this->from AND $this->to AND
 			manufacturers.name_ IN ('$this->brand')
         ";
-       // var_dump($sql_query);
-		$result = $connect->query($sql_query);
+		$result = $this->_connection->query($sql_query);
 		if($result->num_rows !== 0){
-		$result_ = '';
-		while( $result_ = $result->fetch_object() ){
-					/*echo $result_->id;
-					echo $result_->name;
-					echo $result_->diameter;
-					echo $result_->width;
-					echo $result_->pcd;
-					echo $result_->et;
-					echo $result_->type;
-					echo $result_->logo;
-					echo '<br>';*/
-					var_dump($result_);
+			$result_ = '';
+			while( $result_ = $result->fetch_object() ){
+				include "../TestProject/templates/products.php";
+			}
+		}else{
+			echo '<div class="row center"><h2>Нет совпадений</h2>';
 		}
-	}else{
-		echo "Нет совпадений";
 	}
+	/*Метод возвращает все записи*/
+	public function read_all(){
+		$sql_query = "SELECT * FROM properties LEFT JOIN products_properties ON properties.id=products_properties.properti_id
+        LEFT JOIN products ON products_properties.product_id=products.id
+        LEFT JOIN manufacturers ON products.manufacturer_id=manufacturers.id
+        LEFT JOIN ratings ON products_properties.product_id=ratings.product_id";
 
+        $result = $this->_connection->query($sql_query);
+		if($result->num_rows !== 0){
+			$result_ = '';
+			while( $result_ = $result->fetch_object() ){
+				include "../TestProject/templates/products.php";
+			}
+		}else{
+			echo '<div class="row center"><h2>Нет совпадений</h2>';
+		}
 
 	}
 }

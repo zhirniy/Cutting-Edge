@@ -330,11 +330,10 @@ $( document ).ready(function() {
   $("#btn").click(
   function(){
    sendAjaxForm('result_form', 'ajax_form', 'index.php');
-   alert('777');
      return false; 
   }
 );
-
+/*Обработчик событий на измнения значений select-ов*/
   for (var i = 0; i < 8; i++) {
   		  $('#ui-id-'+i+'-button').click(
      function(){
@@ -343,22 +342,9 @@ $( document ).ready(function() {
      }
   	);
   }
-  /*$('#ui-id-1-button').click(
-     function(){
-     	var b = $('#ui-id-1-button .ui-selectmenu-text').html();
-     	$('#ui-id-1').val("'"+b+'"');
-     }
-  	);*/
-
-  /*  $('#ui-id-2-button').click(
-     function(){
-     	var b = $('#ui-id-2-button .ui-selectmenu-text').html();
-     	$('#ui-id-2').val("'"+b+'"');
-     }
-  	);*/
 
 });
-
+/*Отправляем POST запрос*/
 function sendAjaxForm(result_form, ajax_form, url) {
   $.ajax({
       url:     url, //url страницы (action_ajax_form.php)

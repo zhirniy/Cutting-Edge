@@ -2,7 +2,7 @@
 
 class DB
 {
-	private $_connection;
+	protected $_connection;
 	private static $_instance;
 	
 	public static function getInstance() 
@@ -13,7 +13,7 @@ class DB
 		return self::$_instance;
 	}
 	
-	private function __construct() 
+	protected function __construct() 
 	{ 
 		$this->_connection = new mysqli(Config::$host, Config::$user, 
 		Config::$password, Config::$database);

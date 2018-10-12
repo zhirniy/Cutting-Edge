@@ -12,21 +12,18 @@ $html = str_replace('{products}', $product, $html);
 
 echo $html;
 
-$db = DB::getInstance();
-$mysqli = $db->getConnection(); 
-/*$from = $_POST['from'] ? $_POST['from']:0;
-$to = $_POST['to'] ? $_POST['to']:500;
-$sql_query = "SELECT * FROM `products` where discount_price BETWEEN $from AND $to";
-var_dump($sql_query);
-$result = $mysqli->query($sql_query);
-while ($product = $result->fetch_object()){
-		var_dump($product);
-};*/
-var_dump($_POST);
-$result = new Model;
-$result = $result->read($mysqli, $_POST);
-//var_dump($result);
+//$db = DB::getInstance();
+//$mysqli = $db->getConnection(); 
+//Создаём экземпляр класса модель. Я сделал в классе DB конструктор и $_connection protected для того чтобы дописать функционал в классе Model.   
+//Если есть POST запрос - фильтруем данные по нему, если нет - возвращпем все записи
 //var_dump($_POST);
+$result = new Model;
+if($_POST){
+	$result = $result->read($_POST);
+}else{
+	$result = $result->read_all();
+}
+
 
 
 
